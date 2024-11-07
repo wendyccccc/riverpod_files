@@ -58,14 +58,14 @@ const List<Product> allProducts = [
 // generated provider
 // 安裝flutter pub add riverpod_annotation: 用來建立一個provider
 // flutter pub add dev:riverpod_generator
-
+// readonly
 @riverpod
 List<Product> products(ref) {
   return allProducts;
 }
 
 // flutter pub add dev:build_runner
-// dart run build_runner watch
+// dart run build_runner watch: 重新製造出g.dart檔案
 // 取代前面的productsProvider
 
 @riverpod
