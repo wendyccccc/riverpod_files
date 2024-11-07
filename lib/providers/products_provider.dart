@@ -1,5 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_files/models/product.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'products_provider.g.dart'; // dart run build_runner watch就會產生這個檔案
 
 const List<Product> allProducts = [
   Product(
@@ -44,10 +47,28 @@ const List<Product> allProducts = [
       image: 'assets/products/guitar.png'),
 ];
 
-final productsProvider = Provider((ref) {
-  return allProducts;
-});
+// final productsProvider = Provider((ref) {
+//   return allProducts;
+// });
 
-final reducedProductProvider = Provider((ref) {
-  return allProducts.where((p) => p.price < 50);
-});
+// final reducedProductProvider = Provider((ref) {
+//   return allProducts.where((p) => p.price < 50);
+// });
+
+// generated provider
+// 安裝flutter pub add riverpod_annotation: 用來建立一個provider
+// flutter pub add dev:riverpod_generator
+
+@riverpod
+List<Product> products(ref) {
+  return allProducts;
+}
+
+// flutter pub add dev:build_runner
+// dart run build_runner watch
+// 取代前面的productsProvider
+
+@riverpod
+List<Product> reducedProduct(ref) {
+  return allProducts.where((p) => p.price < 50).toList();
+}
